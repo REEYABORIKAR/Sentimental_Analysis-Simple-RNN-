@@ -2,13 +2,21 @@
 
 import numpy as np
 import pandas as pd
-from tensorflow.keras.datasets import imdb
+# from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing import sequence
 from tensorflow.keras.models import load_model
 
-## Load the IMDB dataset word index
-word_index=imdb.get_word_index()
-reverse_word_index= {value:key for key,value in word_index.items()}
+# ## Load the IMDB dataset word index
+# word_index=imdb.get_word_index()
+# reverse_word_index= {value:key for key,value in word_index.items()}
+
+import pickle
+
+with open("word_index.pkl", "rb") as f:
+    word_index = pickle.load(f)
+
+reverse_word_index = {value: key for key, value in word_index.items()}
+
 
 ## Load the pre-trained model with ReLU activation
 model=load_model('simple_rnn_imdb1.h5')
